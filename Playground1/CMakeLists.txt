@@ -10,19 +10,6 @@ set(CMAKE_OPTIMIZE_DEPENDENCIES ON)
 
 set(CMAKE_BUILD_TYPE RelWithDebInfo)
 
-
-# For CUDAToolkit
-# Cudaのライブラリを検索する
-# CUDAToolkit.cmakeというファイルがcmakeのディレクトリのどこかにあり、そのファイルの設定を読み込む
-find_package(CUDAToolkit REQUIRED)
-#find_package(CUDNN)
-
-
-# CUDAToolkitが見つかった場合はCUDA言語を有効化する
-if(CUDAToolkit_FOUND)
-	enable_language(CUDA)
-endif()
-
 # GPUのアーキクチャを指定する
 set(CMAKE_CUDA_ARCHITECTURES 89)
 set(CMAKE_CUDA_STANDARD 14)
@@ -30,11 +17,21 @@ set(CMAKE_CUDA_STANDARD_REQUIRED ON)
 set(CMAKE_CUDA_EXTENSIONS OFF)
 set(CUDA_LINK_LIBRARIES_KEYWORD PUBLIC)
 
+# For CUDAToolkit
+# Cudaのライブラリを検索する
+# CUDAToolkit.cmakeというファイルがcmakeのディレクトリのどこかにあり、そのファイルの設定を読み込む
+find_package(CUDAToolkit REQUIRED)
+#find_package(CUDNN)
+
+# CUDAToolkitが見つかった場合はCUDA言語を有効化する
+if(CUDAToolkit_FOUND)
+    enable_language(CUDA)
+endif()
+
 # 実行ファイルの生成
 add_executable(Main src/main.cu)
 
 #arget_link_libraries(Main CUDAToolkit::cudart)
-
 
 MESSAGE(STATUS "--------------------------------------------")
 MESSAGE(STATUS "Info :")
