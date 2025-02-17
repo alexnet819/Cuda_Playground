@@ -1,6 +1,7 @@
 # CUDA_Playground
 
 # Environment
-CUDA: 12.3.2
-cuDNN: 8.9.7
-OS: Ubuntu22.04
+CUDA: 12.8  
+cuDNN: 9.7.1  
+OS: Ubuntu24.04(WSL2)  
+
