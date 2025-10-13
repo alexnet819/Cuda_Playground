@@ -12,12 +12,12 @@ add_library(cuda_comp SHARED kernel.h kernel.cu)
 # this command would only set the minimum standard,
 # i.e. CMake can still decide to use -std=c++17 instead
 # if the given compilers support C++17
-target_compile_features(cuda_comp PRIVATE cuda_std_14)
+target_compile_features(cuda_comp PRIVATE cuda_std_17)
 
 set_target_properties(cuda_comp
         PROPERTIES
                 CUDA_RUNTIME_LIBRARY Shared
-                # CUDA_STANDARD 14 # this one cannot be changed by CMake
+                # CUDA_STANDARD 17 # this one cannot be changed by CMake
                 # CUDA_SEPARABLE_COMPILATION ON # not needed for this example
 )
 

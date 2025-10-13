@@ -1,6 +1,7 @@
 #include <curand.h>
 #include <curand_kernel.h>
 #include <stdio.h>
+#include <time.h>
 
 __global__ void init(unsigned int seed, curandState_t* states) {
     int idx = threadIdx.x + blockIdx.x * blockDim.x;
@@ -26,7 +27,7 @@ int main() {
 	cudaError_t err = cudaGetLastError();
 	if (err != cudaSuccess) {
 		printf("CUDA error: %s\n", cudaGetErrorString(err));
-		return;
+        return -1;
 	}
 	cudaDeviceSynchronize();
     int h_numbers[N];
